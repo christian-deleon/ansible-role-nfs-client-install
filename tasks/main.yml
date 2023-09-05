@@ -1,0 +1,16 @@
+# file: tasks/main.yml
+---
+- name: Install NFS client packages
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - nfs-common
+    - rpcbind
+    - nfs-kernel-server
+
+- name: Enable and start rpcbind
+  ansible.builtin.service:
+    name: rpcbind
+    state: started
+    enabled: true
