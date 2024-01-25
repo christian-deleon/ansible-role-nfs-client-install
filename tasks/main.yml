@@ -11,6 +11,7 @@
     - nfs-common
     - rpcbind
     - nfs-kernel-server
+  become: true
   when: ansible_os_family == 'Debian'
 
 - name: Install NFS client packages for RedHat
@@ -21,6 +22,7 @@
     - nfs-utils
     - rpcbind
     - nfs4-acl-tools
+  become: true
   when: ansible_os_family == 'RedHat'
 
 - name: Enable and start rpcbind
@@ -28,3 +30,4 @@
     name: rpcbind
     state: started
     enabled: true
+  become: true
